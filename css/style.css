@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;500;700&display=swap');
+/**********************************************
+                Global styles
+**********************************************/
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+}
+
+:root {
+  --shadow: #000;
+  --header: #7a7a7a;
+  --color: #fafafa;
+  --lit-header: #e6e6e6;
+  --matrix-green: #00cc00;
+  --matrix-light: #0f0;
+  --speed: 2s;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: var(--matrix-green);
+  color: var(--color);
+  perspective: 1200px;
+}
+
+/**********************************************
+                    Layout
+**********************************************/
+
+/**********************************************
+                Specific styles
+**********************************************/
+@property --swing-x {
+  initial-value: 0;
+  inherits: false;
+  syntax: '<integer>';
+}
+@property --swing-y {
+  initial-value: 0;
+  inherits: false;
+  syntax: '<integer>';
+}
+
+a {
+  text-decoration: none;
+  color: var(--matrix-green);
+  padding: 1rem 4rem;
+  border-radius: 4rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.05rem;
+}
+
+a:hover {
+  color: var(--matrix-light);
+}
+a:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+h1 {
+  -webkit-animation: swing var(--speed) infinite alternate ease-in-out;
+          animation: swing var(--speed) infinite alternate ease-in-out;
+  font-size: 3rem;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 1rem;
+  letter-spacing: 1rem;
+  transform: translate3d(0, 0, 0vmin);
+  --x: calc(50% + (var(--swing-x) * 0.5) * 1%);
+  background: radial-gradient(var(--lit-header), var(--header) 45%) var(--x) 100%/200% 200%;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h2 {
+  font-size: 1rem;
+  margin: 1rem 0;
+  color: var(--matrix-green);
+}
+
+.around {
+  animation: swing var(--speed) infinite alternate-reverse ease-in-out;
+  height: 100%;
+  width: 100%;
+  transform-origin: 50% 30%;
+  transform: rotate(calc(var(--swing-x) * -0.25deg));
+  background: radial-gradient(40% 40% at 50% 42%, transparent, #000 35%);
+}
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+.container {
+  height: 250vmax;
+  width: 250vmax;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.info {
+  text-align: center;
+  line-height: 1.5;
+  max-width: clamp(16rem, 90vmin, 25rem);
+}
+.info > p {
+  margin-bottom: 3rem;
+  color: var(--matrix-light);
+}
+@-webkit-keyframes swing {
+  0% {
+    --swing-x: -100;
+    --swing-y: -100;
+  }
+  50% {
+    --swing-y: 0;
+  }
+  100% {
+    --swing-y: -100;
+    --swing-x: 100;
+  }
+}
+@keyframes swing {
+  0% {
+    --swing-x: -100;
+    --swing-y: -100;
+  }
+  50% {
+    --swing-y: 0;
+  }
+  100% {
+    --swing-y: -100;
+    --swing-x: 100;
+  }
+}
+
+/**********************************************
+                Helper classes
+**********************************************/
+.list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.clearfix:before,
+.clearfix:after {
+  content: ' ';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+/*********************************************
+               @media Queries
+*********************************************/
+@media all and (min-width: 768px) {
+    h1 {
+      font-size: 10rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    a {
+      font-size: 1rem;
+    }
+}
+
+@media all and (min-width: 992px) {
+    h1 {
+      font-size: 20rem;
+    }
+    h2 {
+      font-size: 3rem;
+    }
+    a {
+      font-size: 1.2rem;
+    }
+}
+@media all and (min-width: 1200px) {
+    h1 {
+      font-size: 25rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    a {
+      font-size: 1.5rem;
+    }
+}
